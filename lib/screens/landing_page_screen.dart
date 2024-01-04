@@ -1,7 +1,20 @@
+// import 'package:adventure_ai/screens/signup_screen.dart';
+import 'package:adventure_ai/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class LandingPageScreen extends StatelessWidget {
   const LandingPageScreen({super.key});
+
+  void _navigateToSignUpScreen(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      // backgroundColor: Colors.white.withOpacity(0.8),
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return const SignUpSheet();
+      },
+    );
+  }
 
   Widget _buildSignUpContent(BuildContext context) {
     return Column(
@@ -45,7 +58,7 @@ class LandingPageScreen extends StatelessWidget {
                     height: 60, // Adjust the height of the button
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add logic to process sign-up
+                        _navigateToSignUpScreen(context);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
