@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key});
+  const SignUpScreen({super.key});
 
   Widget _buildSignUpContent(BuildContext context) {
     return Column(
@@ -62,7 +62,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Container(
+                const SizedBox(
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +71,7 @@ class SignUpScreen extends StatelessWidget {
                         child: Divider(color: Colors.grey),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
                           'or',
                           style: TextStyle(
@@ -101,7 +101,8 @@ class SignUpScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        side: BorderSide(color: Colors.white), // White border
+                        side: const BorderSide(
+                            color: Colors.white), // White border
                       ),
                       child: const Text(
                         'Continue as Guest',
@@ -134,110 +135,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-
-// class SignUpScreen extends StatelessWidget {
-//   const SignUpScreen({Key? key});
-
-//   Widget _buildSignUpContent(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Expanded(
-//           child: Container(
-//             alignment: Alignment.centerLeft,
-//             padding: EdgeInsets.only(
-//               top: 0.50 * MediaQuery.of(context).size.height,
-//               left: 20,
-//               right: 20,
-//             ),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 const Text(
-//                   'Hello!',
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                     fontSize: 48,
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.white,
-//                   ),
-//                 ),
-//                 const Text(
-//                   'Welcome to Adventure Ai',
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                     fontSize: 24,
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.white,
-//                   ),
-//                 ),
-//                 const SizedBox(height: 40),
-//                 SizedBox(
-//                   width: MediaQuery.of(context).size.width,
-//                   child: SizedBox(
-//                     width: double.infinity,
-//                     height: 60, // Adjust the height of the button
-//                     child: ElevatedButton(
-//                       onPressed: () {
-//                         // Add logic to process sign-up
-//                       },
-//                       style: ElevatedButton.styleFrom(
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(10.0),
-//                         ),
-//                       ),
-//                       child: const Text(
-//                         'Register or Log In',
-//                         style: TextStyle(fontSize: 18),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(height: 40),
-//                 SizedBox(
-//                   width: MediaQuery.of(context).size.width,
-//                   child: SizedBox(
-//                     width: double.infinity,
-//                     height: 60, // Adjust the height of the button
-//                     child: OutlinedButton(
-//                       onPressed: () {
-//                         // Add logic to continue as a guest
-//                       },
-//                       style: OutlinedButton.styleFrom(
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(10.0),
-//                         ),
-//                         side: BorderSide(color: Colors.white), // White border
-//                       ),
-//                       child: const Text(
-//                         'Continue as Guest',
-//                         style: TextStyle(fontSize: 18, color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Stack(
-//       fit: StackFit.expand,
-//       children: [
-//         SvgPicture.asset(
-//           'assets/svg/background.svg',
-//           fit: BoxFit.cover,
-//           width: MediaQuery.of(context).size.width,
-//           height: MediaQuery.of(context).size.height,
-//         ),
-//         _buildSignUpContent(context),
-//       ],
-//     );
-//   }
-// }
