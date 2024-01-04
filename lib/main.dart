@@ -1,6 +1,7 @@
-import 'package:adventure_ai/screens/singup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:adventure_ai/screens/landing_page_screen.dart';
+import 'package:flutter_svg/svg.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -33,15 +34,31 @@ class MyApp extends ConsumerWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomePage());
+        home: const AdventureAiApp());
   }
 }
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class AdventureAiApp extends ConsumerWidget {
+  const AdventureAiApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(body: SignUpScreen());
+    return Scaffold(
+        body: Stack(
+      fit: StackFit.expand,
+      children: [
+        /** 
+         * TODO: Find where SVG code should live bc not every page will need this as the background
+         * 
+         */
+        SvgPicture.asset(
+          'assets/svg/background.svg',
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+        ),
+        const LandingPageScreen(),
+      ],
+    ));
   }
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class LandingPageScreen extends StatelessWidget {
+  const LandingPageScreen({super.key});
 
   Widget _buildSignUpContent(BuildContext context) {
     return Column(
@@ -55,7 +53,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'Register or Log In',
+                        "Let's Get Started",
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
@@ -105,7 +103,7 @@ class SignUpScreen extends StatelessWidget {
                             color: Colors.white), // White border
                       ),
                       child: const Text(
-                        'Continue as Guest',
+                        'I already have an account',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ),
@@ -121,17 +119,6 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        SvgPicture.asset(
-          'assets/svg/background.svg',
-          fit: BoxFit.cover,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-        ),
-        _buildSignUpContent(context),
-      ],
-    );
+    return _buildSignUpContent(context);
   }
 }
