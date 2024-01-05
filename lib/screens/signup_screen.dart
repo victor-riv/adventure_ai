@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SignUpSheet extends StatelessWidget {
-  const SignUpSheet({Key? key}) : super(key: key);
+  const SignUpSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class SignUpSheet extends StatelessWidget {
             const SizedBox(height: 10),
             const Center(
                 child: Text(
-              "Let's Create an Account",
+              "Let's create an account",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             )),
             const SizedBox(height: 40),
@@ -32,8 +32,25 @@ class SignUpSheet extends StatelessWidget {
               child: TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Username',
+                  filled: true,
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 2.0, // Adjust border width here
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 2.0, // Adjust border width here
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
                 // Handle username input
@@ -43,14 +60,31 @@ class SignUpSheet extends StatelessWidget {
             SizedBox(
               height: buttonHeight,
               child: TextFormField(
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
+                  filled: true,
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 2.0, // Adjust border width here
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 2.0, // Adjust border width here
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-                obscureText: true,
-                // Handle password input
+                // Handle username input
               ),
             ),
             const SizedBox(height: 30),
@@ -60,38 +94,66 @@ class SignUpSheet extends StatelessWidget {
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   backgroundColor:
                       const Color(0xFF43137B), // Set transparent background
                 ),
                 child: const Text(
                   "Create Account",
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
             const SizedBox(height: 40),
-            const Center(child: Text("Already got an account?")),
+            const SizedBox(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Divider(color: Colors.grey),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(
+                      'Already have an account?',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Divider(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 40),
             SizedBox(
               height: buttonHeight,
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
+                  elevation: 3,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   // Set the background color
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.mail, size: 24), // Replace with Google icon
+                    Icon(
+                      Icons.mail,
+                      size: 24,
+                      color: Colors.black,
+                    ), // Replace with Google icon
                     SizedBox(width: 30), // Adjust spacing as needed
                     Text(
                       "Continue with Google",
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ],
                 ),
@@ -103,19 +165,22 @@ class SignUpSheet extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
+                  elevation: 3,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   // Set the background color
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.apple, size: 24), // Replace with Apple icon
+                    Icon(Icons.apple,
+                        size: 24,
+                        color: Colors.black), // Replace with Apple icon
                     SizedBox(width: 30), // Adjust spacing as needed
                     Text(
                       "Continue with Apple",
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ],
                 ),
@@ -127,20 +192,24 @@ class SignUpSheet extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
+                  elevation: 3,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   // Set the background color
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.facebook,
-                        size: 24), // Replace with Facebook icon
+                    Icon(
+                      Icons.facebook,
+                      size: 24,
+                      color: Colors.black,
+                    ), // Replace with Facebook icon
                     SizedBox(width: 30), // Adjust spacing as needed
                     Text(
                       "Continue with Facebook",
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ],
                 ),
