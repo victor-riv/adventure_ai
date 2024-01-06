@@ -11,7 +11,7 @@ class LandingPageScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       isScrollControlled: true,
       builder: (BuildContext context) {
-        return const SignUpSheet();
+        return SignUpSheet();
       },
     );
   }

@@ -1,11 +1,21 @@
+import 'package:adventure_ai/utils/firebase_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpSheet extends StatelessWidget {
-  const SignUpSheet({super.key});
+final emailTextProvider = StateProvider<String>((ref) => '');
+final passwordTextProvider = StateProvider<String>((ref) => '');
 
-  @override
-  Widget build(BuildContext context) {
+class SignUpSheet extends ConsumerWidget {
+  SignUpSheet({super.key});
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  Widget _buildSignUpScreen(BuildContext context, WidgetRef ref) {
     const buttonHeight = 50.0; // Set the height for buttons
+
+    final email = ref.watch(emailTextProvider);
+    final password = ref.watch(passwordTextProvider);
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
@@ -30,8 +40,13 @@ class SignUpSheet extends StatelessWidget {
             SizedBox(
               height: buttonHeight,
               child: TextFormField(
+                controller: emailController,
+                onChanged: (value) {
+                  ref.watch(emailTextProvider.notifier).state = value.trim();
+                },
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'Email',
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
@@ -60,6 +75,10 @@ class SignUpSheet extends StatelessWidget {
             SizedBox(
               height: buttonHeight,
               child: TextFormField(
+                controller: passwordController,
+                onChanged: (value) {
+                  ref.read(passwordTextProvider.notifier).state = value.trim();
+                },
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -91,7 +110,17 @@ class SignUpSheet extends StatelessWidget {
             SizedBox(
               height: buttonHeight,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                  createUserWithEmailAndPassword(email, password);
+                  // Clear text fields after account creation
+                  emailController.clear();
+                  passwordController.clear();
+
+                  // Reset the state
+                  ref.watch(emailTextProvider.notifier).state = '';
+                  ref.watch(passwordTextProvider.notifier).state = '';
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
@@ -219,5 +248,10 @@ class SignUpSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return _buildSignUpScreen(context, ref);
   }
 }
