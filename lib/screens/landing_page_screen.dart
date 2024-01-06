@@ -8,7 +8,7 @@ class LandingPageScreen extends StatelessWidget {
   void _navigateToSignUpScreen(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).cardColor,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return SignUpSheet();

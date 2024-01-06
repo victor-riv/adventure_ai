@@ -38,7 +38,7 @@ class SignUpSheet extends ConsumerWidget {
               "Let's create an account",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             )),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
             SizedBox(
               height: buttonHeight,
               child: TextFormField(
@@ -146,15 +146,15 @@ class SignUpSheet extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 40),
-            const SizedBox(
+            SizedBox(
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Divider(color: Colors.grey),
+                    child: Divider(color: Theme.of(context).dividerColor),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       'Already have an account?',
@@ -165,7 +165,7 @@ class SignUpSheet extends ConsumerWidget {
                     ),
                   ),
                   Expanded(
-                    child: Divider(color: Colors.grey),
+                    child: Divider(color: Theme.of(context).dividerColor),
                   ),
                 ],
               ),
