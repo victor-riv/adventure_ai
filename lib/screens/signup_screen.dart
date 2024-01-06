@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final emailTextProvider = StateProvider<String>((ref) => '');
 final passwordTextProvider = StateProvider<String>((ref) => '');
+final isLoadingProvider = StateProvider<bool>((ref) => false);
 
 class SignUpSheet extends ConsumerWidget {
   SignUpSheet({super.key});
@@ -11,7 +12,8 @@ class SignUpSheet extends ConsumerWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Widget _buildSignUpScreen(BuildContext context, WidgetRef ref) {
+  Widget _buildSignUpScreen(
+      BuildContext context, WidgetRef ref, bool isLoading) {
     const buttonHeight = 50.0; // Set the height for buttons
 
     final email = ref.watch(emailTextProvider);
@@ -110,17 +112,24 @@ class SignUpSheet extends ConsumerWidget {
             SizedBox(
               height: buttonHeight,
               child: ElevatedButton(
-                onPressed: () {
-                  FocusScope.of(context).unfocus();
-                  createUserWithEmailAndPassword(email, password);
-                  // Clear text fields after account creation
-                  emailController.clear();
-                  passwordController.clear();
+                onPressed: isLoading
+                    ? null
+                    : () async {
+                        FocusScope.of(context).unfocus();
+                        ref.read(isLoadingProvider.notifier).state = true;
 
-                  // Reset the state
-                  ref.watch(emailTextProvider.notifier).state = '';
-                  ref.watch(passwordTextProvider.notifier).state = '';
-                },
+                        await createUserWithEmailAndPassword(email, password);
+
+                        // Clear text fields after account creation
+                        emailController.clear();
+                        passwordController.clear();
+
+                        // Reset the state
+                        ref.watch(emailTextProvider.notifier).state = '';
+                        ref.watch(passwordTextProvider.notifier).state = '';
+
+                        ref.read(isLoadingProvider.notifier).state = false;
+                      },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
@@ -128,10 +137,12 @@ class SignUpSheet extends ConsumerWidget {
                   backgroundColor:
                       const Color(0xFF43137B), // Set transparent background
                 ),
-                child: const Text(
-                  "Create Account",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
+                child: isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text(
+                        "Create Account",
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
               ),
             ),
             const SizedBox(height: 40),
@@ -252,6 +263,7 @@ class SignUpSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return _buildSignUpScreen(context, ref);
+    final isLoading = ref.watch(isLoadingProvider.notifier).state;
+    return _buildSignUpScreen(context, ref, isLoading);
   }
 }
